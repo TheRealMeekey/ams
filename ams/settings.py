@@ -6,7 +6,7 @@ SECRET_KEY = '_&qm&jx@-zwjyw1#z)d_y%%6!ikw)(p)*++y2#z-%&y*8l_v@c'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ams-kgeu.herokuapp.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
