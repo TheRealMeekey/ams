@@ -4,9 +4,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = '_&qm&jx@-zwjyw1#z)d_y%%6!ikw)(p)*++y2#z-%&y*8l_v@c'
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ams-kgeu.herokuapp.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -71,6 +71,9 @@ DATABASES = {
     }
 }
 
+import dj_database_url
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
