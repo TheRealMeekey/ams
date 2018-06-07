@@ -27,6 +27,6 @@ class ApplicationAdmin(admin.ModelAdmin):
 admin.site.site_header = 'Сайт Администратора'
 admin.site.site_title = 'Сайт Администратора'
 admin.site.index_title = 'Администратор Helpdesk'
-admin.site.site_url = '/helpdesk/application'
+admin.site.site_url = '/api/helpdesk/application'
 
 admin.site.register(Application, ApplicationAdmin)
