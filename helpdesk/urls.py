@@ -6,10 +6,10 @@ from .views import *
 
 
 urlpatterns = {
-    url(r'^api/executor/$', ExecutorListView.as_view()),
-    url(r'^api/executor/(?P<pk>\d+)/$', ExecutorDetailView.as_view()),
-    url(r'^api/application/$', ApplicationListView.as_view()),
-    url(r'^api/application/(?P<pk>\d+)/$', ApplicationDetailView.as_view()),
+    url(r'^executor/$', ExecutorListView.as_view()),
+    url(r'^executor/(?P<pk>\d+)/$', ExecutorDetailView.as_view()),
+    url(r'^application/$', ApplicationListView.as_view()),
+    url(r'^application/(?P<pk>\d+)/$', ApplicationDetailView.as_view()),
 }
 
 urlpatterns = format_suffix_patterns(urlpatterns)
