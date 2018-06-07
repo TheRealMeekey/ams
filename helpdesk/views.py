@@ -7,12 +7,6 @@ class ExecutorListView(generics.ListCreateAPIView):
     queryset = Executor.objects.all()
     serializer_class = ExecutorSerializer
 
-
-class ExecutorDetailView(generics.RetrieveUpdateDestroyAPIView):
-    serializer_class = ExecutorSerializer
-    queryset = Executor.objects.all()
-
-
 class ApplicationListView(generics.ListCreateAPIView):
     queryset = Application.objects.all()
     serializer_class = ApplicationSerializer

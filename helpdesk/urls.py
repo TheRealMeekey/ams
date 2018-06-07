@@ -7,7 +7,6 @@ from .views import *
 
 urlpatterns = {
     url(r'^executor/$', ExecutorListView.as_view()),
-    url(r'^executor/(?P<pk>\d+)/$', ExecutorDetailView.as_view()),
     url(r'^application/$', ApplicationListView.as_view()),
     url(r'^application/(?P<pk>\d+)/$', ApplicationDetailView.as_view()),
 }
