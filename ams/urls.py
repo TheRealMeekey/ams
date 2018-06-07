@@ -5,6 +5,6 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^helpdesk/', include('helpdesk.urls')), # Add this line
-    url(r'^account/', include('account.urls')),
+    url(r'^api/helpdesk/', include('helpdesk.urls')), # Add this line
+    url(r'^api/account/', include('account.urls')),
 ]
