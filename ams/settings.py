@@ -16,11 +16,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'helpdesk',
+    'account',
     'rest_framework',
     'corsheaders',
     'rest_framework.authtoken',
-    'rest_auth', 
-    'account',
+    'rest_auth',
 ]
 
 MIDDLEWARE = [
@@ -128,4 +128,6 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     )
 }
+
+DATE_FORMAT = 'Y-m-d'
 

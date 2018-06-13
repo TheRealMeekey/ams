@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 from django.utils import timezone
 from django.contrib.auth.models import Group, Permission, User
 
@@ -18,7 +19,7 @@ class Application(models.Model):
 	title = models.CharField(max_length=50, verbose_name = 'Заголовок')
 	text = models.TextField(verbose_name = 'Описание проблемы')
 	cabinet = models.CharField(max_length = 5, verbose_name = 'Кабинет')
-	published_date = models.DateField(blank=True, null=True, default = timezone.now, 
+	published_date = models.DateField(blank=True, null=True, default = datetime.date.today, 
 										verbose_name = 'Дата')
 	status = models.CharField(max_length=15, choices=STATUS_CHOICES, default='New', 
 								verbose_name = 'Статус')
@@ -33,7 +34,7 @@ class Application(models.Model):
 		verbose_name_plural = 'Заявки'
     
 	def publish(self):
-		self.publish_date = timezone.now()
+		self.publish_date = datetime.date.today()
 		self.save()
 
 	def __str__(self):

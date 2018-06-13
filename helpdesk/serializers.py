@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Application, Executor
+from rest_framework.fields import CurrentUserDefault
 
 class ExecutorSerializer(serializers.ModelSerializer):
 
@@ -26,6 +27,7 @@ class ApplicationSerializer(serializers.ModelSerializer):
         executor_data = validated_data.pop('application_executor')
         executor = (instance.application_executor).all()
         executor = list(executor)
+        # instance.author = CurrentUserDefault()
         instance.author = validated_data.get('author', instance.author)
         instance.title = validated_data.get('title', instance.title)
         instance.text = validated_data.get('text', instance.text)

@@ -24,8 +24,8 @@ class CustomAuthToken(ObtainAuthToken):
             'last_name': user.last_name,
             'location': profile.location,
             'phone': profile.phone,
-            # 'user': profile.user,
             # 'image': profile.image,
             # 'group': user.groups,
             # 'permissions': user.user_permissions
         })
+
