@@ -1,33 +1,33 @@
 from rest_framework import serializers
-from .models import Application, Executor
+from .models import Ticket, Executor
 from rest_framework.fields import CurrentUserDefault
 
 class ExecutorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Executor
-        fields = ['application', 'owner']
+        fields = ['ticket', 'owner']
 
 
-class ApplicationSerializer(serializers.ModelSerializer):
-    application_executor = ExecutorSerializer(many=True)
+class TicketSerializer(serializers.ModelSerializer):
+    ticket_executor = ExecutorSerializer(many=True)
 
     class Meta:
-        model = Application
-        fields = '__all__'
+        model = Ticket
+        fields = ['id', 'author', 'title', 'text', 'cabinet', 'phone', 'status', 'published_date', 'ticket_executor']
 
     def create(self, validated_data):
-        executor_data = validated_data.pop('application_executor')
-        application = Application.objects.create(**validated_data)
+        author = self.author
+        executor_data = validated_data.pop('ticket_executor')
+        ticket = Ticket.objects.create(author=author, **validated_data)
         for executor_data in executor_data:
-            Executor.objects.create(application=application, *executor_data)
-        return application
+            Executor.objects.create(ticket=ticket, *executor_data)
+        return ticket
 
     def update(self, instance, validated_data):
-        executor_data = validated_data.pop('application_executor')
-        executor = (instance.application_executor).all()
+        executor_data = validated_data.pop('ticket_executor')
+        executor = (instance.ticket_executor).all()
         executor = list(executor)
-        # instance.author = CurrentUserDefault()
         instance.author = validated_data.get('author', instance.author)
         instance.title = validated_data.get('title', instance.title)
         instance.text = validated_data.get('text', instance.text)

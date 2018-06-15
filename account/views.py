@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from .models import *
-# from .serializers import *
+from .serializers import *
 from rest_framework import generics
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
-
+from rest_framework.views import APIView
 
 class CustomAuthToken(ObtainAuthToken):
 
@@ -28,4 +28,8 @@ class CustomAuthToken(ObtainAuthToken):
             # 'group': user.groups,
             # 'permissions': user.user_permissions
         })
+
+class ProfileView(generics.ListCreateAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
 

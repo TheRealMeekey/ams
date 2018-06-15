@@ -6,7 +6,7 @@ from django.contrib.auth.models import Group, Permission, User
 
 '''---------------------------Заявка---------------------------'''
 
-class Application(models.Model):
+class Ticket(models.Model):
 
 	STATUS_CHOICES = (
 		('In the work', 'В работе'),
@@ -41,8 +41,8 @@ class Application(models.Model):
 		return self.title
 
 class Executor(models.Model):
-	application = models.ForeignKey('Application', null = True, verbose_name='Заявка', 
-										on_delete=models.CASCADE, related_name = 'application_executor')
+	ticket = models.ForeignKey('Ticket', null = True, verbose_name='Заявка', 
+										on_delete=models.CASCADE, related_name = 'ticket_executor')
 	owner = models.ForeignKey(User, related_name = 'owner', null = True, blank = True, 
 			on_delete=models.CASCADE, limit_choices_to={ 'groups__name': 'ЦИК'}, 
 			verbose_name = 'Исполнитель')

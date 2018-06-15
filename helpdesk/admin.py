@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
-from .models import Application, Executor
+from .models import Ticket, Executor
 from django.contrib.admin import AdminSite
 
 class ExecutorInline(admin.TabularInline):
@@ -8,7 +8,7 @@ class ExecutorInline(admin.TabularInline):
 	insert_after = 'status'
 	extra = 1
 
-class ApplicationAdmin(admin.ModelAdmin):
+class TicketAdmin(admin.ModelAdmin):
     
 	list_display = ('id', 'title', 'cabinet', 'published_date', 'status', 'author')
 	list_filter = ('status', 'published_date')
@@ -27,6 +27,6 @@ class ApplicationAdmin(admin.ModelAdmin):
 admin.site.site_header = 'Сайт Администратора'
 admin.site.site_title = 'Сайт Администратора'
 admin.site.index_title = 'Администратор Helpdesk'
-admin.site.site_url = '/api/helpdesk/application'
+admin.site.site_url = '/api/helpdesk/ticket'
 
-admin.site.register(Application, ApplicationAdmin)
+admin.site.register(Ticket, TicketAdmin)
