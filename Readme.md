@@ -1,3 +1,5 @@
+Application Management System
+=====================
 curl api | Descriptions
 ----|--------------
 curl -X POST --url https://ams-kgeu.herokuapp.com/api/account/auth/ -H 'content-type: application/json' -d '{"username":"username", "password":"password"}' | Авторизация
