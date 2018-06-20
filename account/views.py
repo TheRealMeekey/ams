@@ -24,9 +24,9 @@ class CustomAuthToken(ObtainAuthToken):
             'last_name': user.last_name,
             'location': profile.location,
             'phone': profile.phone,
+            'permission': user.get_all_permissions(),
             # 'image': profile.image,
             # 'group': user.groups,
-            # 'permissions': user.user_permissions
         })
 
 class ProfileView(generics.ListCreateAPIView):

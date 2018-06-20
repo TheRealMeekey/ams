@@ -128,6 +128,3 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     )
 }
-
-DATE_FORMAT = 'Y-m-d'
-

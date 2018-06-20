@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from .models import Ticket, Executor
 from rest_framework.fields import CurrentUserDefault
+from rest_framework.serializers import ModelSerializer
+from django.contrib.auth.models import User
 
 class ExecutorSerializer(serializers.ModelSerializer):
 
@@ -42,3 +44,8 @@ class TicketSerializer(serializers.ModelSerializer):
             executor.owner = executor_data.get('owner', executor.owner)
             executor.save()
         return instance
+
+class UserModelSerializer(ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'

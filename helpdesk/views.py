@@ -1,14 +1,14 @@
 from django.shortcuts import render
 from .models import *
 from .serializers import *
-from rest_framework import generics
+from rest_framework import generics, status
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
-from ams.settings import DATE_FORMAT
 import datetime
 from django.utils import timezone
+from django.contrib.auth.models import User
+from .permissions import ExecutorPermission
 
 class ExecutorListView(generics.ListCreateAPIView):
     queryset = Executor.objects.all()
@@ -28,6 +28,7 @@ class TicketCreateView(generics.ListCreateAPIView): #Ticket create
 
 #Добавить разрешение на просмотр только овнерами
 class TicketListView(APIView): #all Ticket
+    permission_classes = (ExecutorPermission,)
 
     def get(self, request, format=None):
         tickets = Ticket.objects.filter(status__in = ['New', 'In the work'])
@@ -55,12 +56,13 @@ class TicketDetailView(APIView): #Ticket detail
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, pk, format=None):
-        ticket = self.get_object(pk)
-        ticket.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    # def delete(self, request, pk, format=None):
+    #     ticket = self.get_object(pk)
+    #     ticket.delete()
+    #     return Response(status=status.HTTP_204_NO_CONTENT)
 
 class MyTicketView(APIView): #my Ticket
+    
 
     def get(self, request, format=None):
         owners = Executor.objects.filter(owner__username=request.user)
